@@ -18,7 +18,7 @@ function cadastrar() {
 
     let novoFormato = `${dataArray[2]}/${dataArray[1]}/${dataArray[0]}`
 
-    console.log(novoFormato)
+    alert(novoFormato)
     }
 
     formatoData()
