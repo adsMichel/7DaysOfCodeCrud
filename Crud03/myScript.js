@@ -13,16 +13,21 @@ function cadastrar() {
     }
 
     let nascimento = document.getElementById('id_nascimento').value;
-
     let formatoData=()=>{
     let dataArray = nascimento.split('-')
-
     let novoFormato = `${dataArray[2]}/${dataArray[1]}/${dataArray[0]}`
 
     console.log(novoFormato)
-}
-
-console.log(nome.value)
-formatoData()
-
+    alert(nascimento);
+    }
+    formatoData();
+    
+    let pessoa = {
+        nome: nome.value,
+        nascimento: novoFormato
+    };
+    
+    //localStorage.setItem('pessoa', nome.value);
+    console.log(pessoa.nome);
+    console.log(pessoa.nascimento);
 }
