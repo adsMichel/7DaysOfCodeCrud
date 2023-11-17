@@ -8,15 +8,21 @@
 </head>
 <body>
     <h1>Cadastro simples</h1>
-    <form action="" class="form js-form">
+    <form action="" class="form js-form" id="form">
         <label for="id_nome">Nome:
-            <input type="text" id="id_nome" class="form-field js-form-field" name="nome" required pattern="([aA-zZ]+)">
-        </label><br>
+            <input type="text" id='id_nome' class="form-field js-form-field" name="nome" required minlength="3" maxlength="120" pattern="([aA-zZ\s]*)">
+        </label><br><br>
         <label for="id_nascimento">Nascimento:
             <input type="date" id="id_nascimento" class="form-field js-form-field" name="nascimento" required>
         </label><br><br>
-        <input type="button" value="Salvar" id="id_button">
+        <input type="submit" value="Salvar" id="id_button">
     </form>
+    <table id="tab_users">
+        <thead>
+            <th>Nome</th>
+            <th>Nascimento</th>
+        </thead>
+    </table>
     <script src="myScript.js"></script> 
 </body>
 </html>

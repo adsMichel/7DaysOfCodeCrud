@@ -1,33 +1,27 @@
 let button = document.getElementById('id_button');
 button.addEventListener('click', cadastrar);
+let form = document.getElementById('form');
+let table = document.getElementById('tab_users');
 
-
+form.addEventListener("submit", (event) => {
+    event.preventDefault()
+  })
 
 function cadastrar() {
-    let nome = document.getElementById('id_nome');
-    let alfabeto = /^[A-Za-z\s]*$/;
-    
-    if ((nome.value.length < 3) || (nome.value.length > 120) || (!nome.value.match(alfabeto))) {
-        alert('Um nome precisa ter no mínimo três letras.\nUm nome pode ter no máximo 120 letras.\nUm nome pode apenas conter letras, e não números.\nA data de nascimento precisa estar no formato DD/MM/AAAA, por exemplo: 31/01/2021.\nO mês informado deve estar entre 01 e 12.');
-        nome.value = '';
+    let nome = document.getElementById('id_nome').value;
+    let birthdate = document.getElementById('id_nascimento').value;
+    let data = new Date(birthdate);
+    let dataFormatada = data.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+    let usuario = {
+        name: nome,
+        dataNascimento: dataFormatada    
     }
-
-    let nascimento = document.getElementById('id_nascimento').value;
-    let formatoData=()=>{
-    let dataArray = nascimento.split('-')
-    let novoFormato = `${dataArray[2]}/${dataArray[1]}/${dataArray[0]}`
-
-    console.log(novoFormato)
-    alert(nascimento);
-    }
-    formatoData();
-    
-    let pessoa = {
-        nome: nome.value,
-        nascimento: novoFormato
-    };
-    
-    //localStorage.setItem('pessoa', nome.value);
-    console.log(pessoa.nome);
-    console.log(pessoa.nascimento);
+    localStorage.setItem('user', JSON.stringify(usuario));
+    let tr = document.createElement('tr');
+    table.appendChild(tr);
+    tr.id = 'duran';
+    let trow = document.getElementById('duran');
+    trow.innerHTML = `
+    <td class="tdName">${JSON.parse(localStorage.getItem('user')).name}</td>
+    <td class="tdBirthdate">${JSON.parse(localStorage.getItem('user')).dataNascimento}</td>`;
 }
